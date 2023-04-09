@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Card, Container, Col, Row, CardHeader, CardTitle, CardBody, CardText, Button } from "sveltestrap"
+  import { page } from '$app/stores'
 </script>
 <Container fluid class="main-container">
   <Row class="align-items-center main-row">
@@ -10,8 +11,8 @@
         </CardHeader>
         <CardBody>
           <CardText>サービスは準備中です。事前の会員登録は下記からどうぞ。</CardText>
-          <Button>会員登録</Button>
-          <Button>ログイン</Button>
+          <a href="{$page.data.authorizationUrl}&screen_hint=signup"><Button>会員登録</Button></a>
+          <a href="{$page.data.authorizationUrl}&screen_hint=login"><Button>ログイン</Button></a>
         </CardBody>
       </Card>
     </Col>
