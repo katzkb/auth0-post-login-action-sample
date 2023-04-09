@@ -1,6 +1,12 @@
 <script lang="ts">
   import { Card, Container, Col, Row, CardHeader, CardTitle, CardBody, CardText, Button } from "sveltestrap"
   import { page } from '$app/stores'
+  import { browser } from '$app/environment'
+  if (browser) {
+    if (localStorage.getItem('name')) {
+      window.location.href = '/my'
+    }
+  }
 </script>
 <Container fluid class="main-container">
   <Row class="align-items-center main-row">
