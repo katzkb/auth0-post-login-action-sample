@@ -12,6 +12,7 @@
   "devDependencies": {
     "@sveltejs/adapter-auto": "^2.0.0",
     "@sveltejs/kit": "^1.5.0",
+    "@types/auth0": "^3.3.1",
     "svelte": "^3.58.0",
     "svelte-check": "^3.0.1",
     "tslib": "^2.4.1",
@@ -21,6 +22,8 @@
   "type": "module",
   "dependencies": {
     "auth0": "^3.3.0",
+    "openid-client": "^5.4.0",
+    "sass": "^1.61.0",
     "sveltestrap": "^5.10.0"
   }
 }
