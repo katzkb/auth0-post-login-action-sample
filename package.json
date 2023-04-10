@@ -22,6 +22,7 @@
   "type": "module",
   "dependencies": {
     "auth0": "^3.3.0",
+    "jsonwebtoken": "^9.0.0",
     "openid-client": "^5.4.0",
     "sass": "^1.61.0",
     "sveltestrap": "^5.10.0"
