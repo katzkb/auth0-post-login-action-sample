@@ -17,8 +17,8 @@
         </CardHeader>
         <CardBody>
           <CardText>サービスは準備中です。事前の会員登録は下記からどうぞ。</CardText>
-          <a href="{$page.data.authorizationUrl}&screen_hint=signup"><Button>会員登録</Button></a>
-          <a href="{$page.data.authorizationUrl}&screen_hint=login"><Button>ログイン</Button></a>
+          <a href="/auth/login/step/1?screenHint=signup"><Button>会員登録</Button></a>
+          <a href="/auth/login/step/1?screenHint=login"><Button>ログイン</Button></a>
         </CardBody>
       </Card>
     </Col>

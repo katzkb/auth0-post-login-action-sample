@@ -1,8 +1,13 @@
 import { env }                from '$env/dynamic/private'
+import { redirect }           from '@sveltejs/kit'
 import { generators, Issuer } from 'openid-client'
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ cookies }) {
+export async function load({ cookies, url }) {
+  const query      = url.searchParams
+  const screenHint = query.get('screenHint') ?? 'login'
+  const params = new URLSearchParams({ screen_hint: screenHint })
+
   const auth0Issuer = await Issuer.discover(`https://${env.AUTH0_DOMAIN}`)
 
   const client = new auth0Issuer.Client({
@@ -30,5 +35,5 @@ export async function load({ cookies }) {
   cookies.set('nonce',         nonce,         { path: '/', maxAge: maxAge, httpOnly: false, secure: false })
   cookies.set('code_verifier', code_verifier, { path: '/', maxAge: maxAge, httpOnly: false, secure: false })
 
-  return { authorizationUrl }
+  throw redirect(302, `${authorizationUrl}&${params}`)
 }

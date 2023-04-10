@@ -3,37 +3,33 @@ import * as jwt     from 'jsonwebtoken'
 import { error }    from '@sveltejs/kit'
 import { redirect } from '@sveltejs/kit'
 
+interface DecodedSessionToken {
+  sub:          string
+  continue_uri: string
+  name:         string
+  address:      string
+}
+
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ url }) {
   const query        = url.searchParams
   const sessionToken = query.get('sessionToken')
   const state        = query.get('state')
 
-  interface DecodedSessionToken {
-    sub:          string
-    continue_uri: string
-    name:         string
-    address:      string
-  }
-
   if (!sessionToken || !state) {
-    throw error(400, {
-      message: 'Bad Request'
-    })
+    throw error(400, { message: 'Bad Request' })
   }
 
   let decodedToken: DecodedSessionToken
   try {
-    decodedToken = jwt.verify(sessionToken, env.AUTH0_ACTIONS_SECRET, {
+    decodedToken = jwt.verify(sessionToken, env.AUTH0_ACTIONS_SECRET, { // トークンの検証
       issuer:     env.AUTH0_DOMAIN,
       algorithms: ['HS256'],
-    })
+    }) as DecodedSessionToken
   } catch {
-    throw error(400, {
-      message: 'Bad Request'
-    })
+    throw error(400, { message: 'Bad Request' })
   }
-
+  // クライアントに値を返却
   return {
     userId:      decodedToken.sub,
     continueUri: decodedToken.continue_uri,
