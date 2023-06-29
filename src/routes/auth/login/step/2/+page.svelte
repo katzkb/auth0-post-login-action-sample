@@ -17,18 +17,18 @@
         </CardHeader>
         <CardBody>
           <CardText>この度はご登録ありがとうございます。追加情報をご登録ください。</CardText>
-          œ
-          œ
-          œ
-          œ
-          œ
-          œ
-          œ
-          œ
-          œ
-          œ
-          œ
-          œ
+          <form method="POST" action="?/continue">
+            <FormGroup floating label="氏名">
+              <Input type="text" name="name" value="{$page.data.name}" required />
+            </FormGroup>
+            <FormGroup floating label="住所">
+              <Input type="text" name="address" value="{$page.data.address}" required />
+            </FormGroup>
+            <input type="hidden" name="userId" value="{$page.data.userId}" />
+            <input type="hidden" name="continueUri" value="{$page.data.continueUri}" />
+            <input type="hidden" name="state" value="{$page.data.state}" />
+            <Button>登録</Button>
+          </form>
         </CardBody>
       </Card>
     </Col>
